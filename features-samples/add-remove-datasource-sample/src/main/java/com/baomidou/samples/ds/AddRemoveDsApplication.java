@@ -18,13 +18,18 @@ package com.baomidou.samples.ds;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
+/**
+ * @author robin
+ */
 @Slf4j
+@ServletComponentScan
 @SpringBootApplication
 public class AddRemoveDsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AddRemoveDsApplication.class, args);
-        log.info("open http://localhost:8080/swagger-ui.html");
+        log.info("open http://localhost:8080/swagger-ui.html and http://localhost:8080/druid/login.html");
     }
 }

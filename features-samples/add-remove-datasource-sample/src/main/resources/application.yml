@@ -17,9 +17,60 @@ spring:
           password: ""
           url: jdbc:h2:mem:test2
           driver-class-name: org.h2.Driver
-      druid:
-        validation-query: "select 1"
-
+    # 数据连接池配置
+    druid:
+      #连接池最大连接数
+      max-active: 20
+      #获取连接的最大等待时间
+      max-wait: 6000
+      #连接池最小连接数
+      min-idle: 10
+      #连接池初始化大小
+      initial-size: 10
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      max-pool-prepared-statement-per-connection-size: 20
+      pool-prepared-statements: true
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      validation-query:  SELECT 1
+      min-evictable-idle-time-millis: 300000
+      time-between-eviction-runs-millis: 60000
+      #监控信息   localhost:${server.port}/druid/login.html
+      stat-view-servlet:
+        login-username: admin
+        login-password: admin
+        #允许哪个机器登录
+        allow: 127.0.0.1
+        #sql监控开关
+        enabled: true
+      #url监控
+      web-stat-filter:
+        enabled: true
+        #session监控
+        session-stat-enable: true
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1
+#      druid:
+#        validation-query: "select 1"
+#        # 配置StatFilter
+#        web-stat-filter:
+#          #默认为false，设置为true启动
+#          enabled: true
+#          url-pattern: "/*"
+#          exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+#        #配置StatViewServlet
+#        stat-view-servlet:
+#          url-pattern: "/druid/*"
+#          #允许那些ip
+#          login-username: admin
+#          login-password: admin
+#          #是否可以重置
+#          reset-enable: false
+#          #启用
+#          enabled: true
 logging:
   level:
     com.baomidou: debug
